@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataCapture IMEI</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Cargar SheetJS desde el CDN (necesario para leer Excel) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+<body>
+    <!-- Menú Hamburguesa -->
+    <div id="menu-icon" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <!-- Menú lateral -->
+    <div id="side-menu" class="hidden">
+        <h3>Menú</h3>
+        <ul>
+            <li onclick="showHistory()">Historial</li>
+            <!-- Puedes añadir más opciones aquí si lo deseas -->
+        </ul>
+    </div>
+
+    <!-- Historial desplegable -->
+    <div id="history-menu" class="hidden">
+        <h3>Historial de Exportaciones</h3>
+        <ul id="history-list"></ul>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="login-error" class="error">Invalid username or password</p>
+    </div>
+
+    <!-- Main Content -->
+    <div id="container" style="display: none;">
+        <header>
+            <h1>QuantumCapture</h1>
+            <p>Advanced IMEI management</p>
+        </header>
+
+        <main>
+            <input type="text" id="imei-input" placeholder="Ingrese Identificador (IMEI/SN)" onkeypress="addIMEI(event)">
+            <p id="counter">Registros (IMEIs y S/N) Escaneados: 0</p>
+            <div id="imei-list"></div>
+            
+            <button id="export-btn" onclick="exportToExcel()">Export to Excel</button>
+            <button id="clear-btn" onclick="clearList()">Clear</button>
+            <button id="remove-duplicates-btn" onclick="removeDuplicates()">Remove Duplicates</button>
+
+            <!-- NUEVO: Botón e input para subir/leer archivos Excel -->
+            <button id="import-excel-btn" onclick="importFromExcel()">Importar desde Excel</button>
+            <input 
+                type="file" 
+                id="excelFileInput" 
+                accept=".xlsx, .xls" 
+                style="display: none;"
+            />
+        </main>
+
+        <footer>
+            <p>&copy; 2024 DataCapture IMEI. MADE BY DAMIAN CARBALLO</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
